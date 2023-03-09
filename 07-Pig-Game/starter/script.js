@@ -15,15 +15,27 @@ const btnRoll = document.querySelector('.btn--roll')
 const btnHold = document.querySelector('.btn--hold')
 
 //start conditions
-score0El.textContent = 0
-score1El.textContent = 0
-diceEl.classList.add('hidden')
 
-const score = [0, 0]
-let currentScore = 0
-let activePlayer = 0
-let playing = true
+let score, currentScore, activePlayer, playing
+//init function
+const init = function () {
+    score = [0, 0]
+    currentScore = 0
+    activePlayer = 0
+    playing = true
 
+    score0El.textContent = 0
+    score1El.textContent = 0
+    currentPlayer0El.textContent = 0
+    currentPlayer1El.textContent = 0
+
+    diceEl.classList.add('hidden')
+    player0El.classList.remove('player--winner')
+    player1El.classList.remove('player--winner')
+    player0El.classList.add(`player--active`)
+    player1El.classList.remove(`player--active`)
+}
+init()
 //switch function
 const switchPlayer = function () {
     document.getElementById(`current--${activePlayer}`).textContent = 0
@@ -66,7 +78,7 @@ btnHold.addEventListener('click', function () {
         score[activePlayer] += currentScore
         document.querySelector(`#score--${activePlayer}`).textContent = score[activePlayer]
         //2.Check if player score is >= 100, if true finish game
-        if (score[activePlayer] >= 20) {
+        if (score[activePlayer] >= 100) {
             //finish the game
             playing = false
             //Current player wins
@@ -84,21 +96,6 @@ btnHold.addEventListener('click', function () {
 })
 
 //new-game button functionality
-btnNew.addEventListener('click', function () {
-    score0El.textContent = 0
-    score1El.textContent = 0
-    diceEl.classList.add('hidden')
-
-    score[0] = 0;
-    score[1] = 0
-    currentScore = 0
-    document.querySelector(`.player--${activePlayer}`).classList.remove('player--winner')
-    document.querySelector(`.player--0`).classList.add(`player--active`)
-    document.querySelector(`.player--1`).classList.remove(`player--active`)
-    activePlayer = 0
-    playing = true
-    document.querySelector(`#current--0`).textContent = 0
-    document.querySelector(`#current--1`).textContent = 0
-})
+btnNew.addEventListener('click', init)
 
 
