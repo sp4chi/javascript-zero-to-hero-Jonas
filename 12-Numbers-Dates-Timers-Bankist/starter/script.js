@@ -6,7 +6,20 @@
 
 /////////////////////////////////////////////////
 // Data
+console.log(3 / 10);
+console.log(0.1 + 0.2);
+console.log(Math.sqrt(25));
+console.log(25 ** 0.5);
+console.log(25 ** (1 / 2));
+console.log(Math.max(5, 11, 23, 4, 7));
+console.log(Math.max(5, 11, '23', 7, 8));
+console.log(Math.max(5, 11, '23px', 7, 8));
 
+console.log(Math.min(5, 11, '23', 7, 8));
+
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min
+
+console.log(randomInt(10, 20));
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
 const account1 = {
@@ -91,9 +104,8 @@ const displayMovements = function (movements, sort = false) {
 
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+        <div class="movements__type movements__type--${type}">${i + 1
+      } ${type}</div>
         <div class="movements__value">${mov}€</div>
       </div>
     `;
@@ -166,9 +178,8 @@ btnLogin.addEventListener('click', function (e) {
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
-    labelWelcome.textContent = `Welcome back, ${
-      currentAccount.owner.split(' ')[0]
-    }`;
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]
+      }`;
     containerApp.style.opacity = 100;
 
     // Clear input fields
