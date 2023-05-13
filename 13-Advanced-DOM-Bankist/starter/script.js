@@ -62,11 +62,11 @@ let btnScrollTo = document.querySelector('.btn--scroll-to')
 let section1 = document.querySelector('#section--1')
 
 btnScrollTo.addEventListener('click', function (e) {
-  let s1coords = section1.getBoundingClientRect()
-  console.log(s1coords);
-  console.log(e.target.getBoundingClientRect());
+  // let s1coords = section1.getBoundingClientRect()
+  // console.log(s1coords);
+  // console.log(e.target.getBoundingClientRect());
 
-  console.log('Current Scroll (X/Y)', scrollX, scrollY);
+  // console.log('Current Scroll (X/Y)', scrollX, scrollY);
 
   // window.scrollTo(s1coords.left + scrollX, s1coords.top + scrollY)
 
@@ -80,7 +80,22 @@ btnScrollTo.addEventListener('click', function (e) {
   //modern scroll approach
   section1.scrollIntoView({ behavior: 'smooth' })
 
-  //
-})
 
+})
+//events
+//using addEventListener allows adding multiple events to same element and it also allows removing the listener if required.
+let h1 = document.querySelector('h1')
+const h1Event = function (e) {
+  alert('You entered the header section')
+  //removing event listener after one use
+  // h1.removeEventListener('mouseenter', h1Event)
+}
+h1.addEventListener('mouseenter', h1Event)
+
+//removing listener after 3 seconds
+setTimeout(() => h1.removeEventListener('mouseenter', h1Event), 3000)
+//old school way of listening events
+// h1.onmouseclick = function () {
+//   alert('You entered the header section')
+// }
 
