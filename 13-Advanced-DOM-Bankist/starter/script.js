@@ -8,7 +8,8 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
-const openModal = function () {
+const openModal = function (e) {
+  e.preventDefault()
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -18,8 +19,7 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', openModal);
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal))
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -29,3 +29,58 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+let message = document.createElement('div')
+message.classList.add('cookie-message');
+
+let header = document.querySelector('.header')
+
+message.innerHTML = 'We use cookies for improve functionality and analytics <button class="btn btn--close-cookie">Got it!</button>'
+
+header.append(message)
+
+//closing cookie functionality
+
+document.querySelector('.btn--close-cookie').addEventListener('click', function () {
+  message.remove()
+})
+
+
+//manipulating styles
+message.style.backgroundColor = '#37383d'
+message.style.width = '120%'
+
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
+
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px'
+
+//console.log(getComputedStyle(message).height);
+
+//adding scroll fucntionality
+let btnScrollTo = document.querySelector('.btn--scroll-to')
+let section1 = document.querySelector('#section--1')
+
+btnScrollTo.addEventListener('click', function (e) {
+  let s1coords = section1.getBoundingClientRect()
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current Scroll (X/Y)', scrollX, scrollY);
+
+  // window.scrollTo(s1coords.left + scrollX, s1coords.top + scrollY)
+
+  //smooth scrooling
+  // window.scrollTo({
+  //   left: s1coords.left + scrollX,
+  //   top: s1coords.top + scrollY,
+  //   behavior: 'smooth'
+  // })
+
+  //modern scroll approach
+  section1.scrollIntoView({ behavior: 'smooth' })
+
+  //
+})
+
+
