@@ -16,16 +16,15 @@
 // console.log(typeof Person);
 
 /**
- *
  * Challenge #1
- *
  */
+
 /**
  *
  * @param {String} maker - name of car manufacturer
  * @param {Number} speed - speed of the car
  */
-function Car(maker, speed) {
+/* function Car(maker, speed) {
   this.maker = maker;
   this.speed = speed;
 }
@@ -48,15 +47,15 @@ car1.brake();
 
 car2.accelerate();
 car2.accelerate();
-car2.brake();
+car2.brake(); */
 
 /**
  * Playing
  */
 
-console.log(car1);
+/* console.log(car1);
 console.log(car1.__proto__);
-console.log(Object.getPrototypeOf(car1));
+console.log(Object.getPrototypeOf(car1)); */
 
 /**
  * Classes - OOP
@@ -73,20 +72,31 @@ class PersonCl {
     this.birthYear = birthYear;
   }
 
-  /**
-   * calcAge() not on the PersonCl but on the prototype property, i.e, PersonCl.prototype
-   */
   calcAge() {
     console.log(new Date().getFullYear() - this.birthYear);
   }
+
+  greet = function () {
+    console.log('Hello ' + this.firstName);
+  };
 }
+
+/**
+ * calcAge and greet not on the PersonCl but on the prototype property, i.e, PersonCl.prototype
+ */
 
 const jessica = new PersonCl('Jessica', 1998);
 
 jessica.calcAge();
 
-PersonCl.prototype.greet = function () {
-  console.log('Hello ' + this.firstName);
-};
+// PersonCl.prototype.greet = function () {
+//   console.log('Hello ' + this.firstName);
+// };
 
 jessica.greet();
+
+/**
+ *  1. Classes are not hoisted unlike function constructors
+ *  2. Classes are first-class citizens
+ *  3. Classes are executed in strict mode
+ */
